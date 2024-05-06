@@ -1,0 +1,30 @@
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .rails-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .rails-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .stats-row {
+    grid-template-columns: 1fr !important;
+  }
+  .modal-dialog {
+    width: 95% !important;
+    margin: 10px;
+  }
+}
