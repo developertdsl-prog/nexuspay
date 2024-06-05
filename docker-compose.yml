@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  nexuspay-api:
+    build: .
+    container_name: nexuspay_api
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - MONGO_URI=mongodb://mongo:27017/nexuspay_db
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET=prod_secret_nexuspay_2024
+      - WEBHOOK_SIGNING_SECRET=whsec_prod_nexuspay_9921
+    depends_on:
+      - mongo
+      - redis
+    restart: always
+
+  mongo:
+    image: mongo:6.0
+    container_name: nexuspay_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+
+  redis:
+    image: redis:7-alpine
+    container_name: nexuspay_redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+volumes:
+  mongo_data:
